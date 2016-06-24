@@ -1,0 +1,12 @@
+public function process(){
+
+                                                $this->load->model('login_model');
+                                                $result = $this->login_model->validate();
+                                                if(! $result){
+                                                redirect('login_ctrl/wrong');
+            
+		}else{
+		
+			                                          redirect('account_ctrl');
+}		
+} 
