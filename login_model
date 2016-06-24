@@ -1,0 +1,22 @@
+public function validate(){
+        
+                            $userid = $this->security->xss_clean($this->input->post('userid'));
+                            $this->db->where('userid', $userid);
+                            $this->db->where('role', 'admin');
+                            $query = $this->db->get('admin');
+if($query->num_rows() == 1){
+            
+                           $row = $query->row();
+                           $data = array(
+                
+                            'adminid' => $row->adminid,
+                            'name' => $row->name,
+                            'department' => $row->department,
+                            'role'=>$row->role,
+                            'validated' => true
+					        );
+			                 $this->session->set_userdata($data);
+			                 return true;
+}
+		                      return false;
+}
