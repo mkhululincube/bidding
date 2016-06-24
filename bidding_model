@@ -1,0 +1,21 @@
+//Model for bidding
+    
+function bid($data){  
+                                $userid = $this->session->userdata('userid');
+                                $this->db->where('userid' , $userid);
+                                $trucker=$this->db->get('bids');
+                                if($trucker->num_rows()>0){
+                                $this->db->where('userid' , $userid);
+                                $query = $this->db->update('bids',$data);
+                                return $query;  
+
+                                
+                                }else{
+                                $this->db->set('userid' , $userid);
+                                $query = $this->db->insert('bids',$data);
+                                return $query;  
+
+                                
+                                }
+    
+}
