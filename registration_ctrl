@@ -1,0 +1,32 @@
+    
+function index(){
+                    $this->load->model('Welcome_model');  
+                    $this->load->library('form_validation');
+                    $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+                    $this->form_validation->set_rules('name', 'name', 'required|min_length[2]|max_length[30]');
+                    $this->form_validation->set_rules('address', 'address', 'required|min_length[2]|max_length[50]');
+                    $this->form_validation->set_rules('phone_number', 'Phone Number', 'required|min_length[5]|max_length[50]');
+
+if ($this->form_validation->run() == FALSE) {
+    
+                     $this->load->view('header'); 
+                     $this->load->view('clients/clientreg_view',$data);
+                     $this->load->view('footer'); 
+
+} else {
+    
+$data = array(
+                    'client_id' => $this->input->post('client_id'),
+                    'name' => $this->input->post('name'),
+                    'address' => $this->input->post('address'),
+                    'email_address' => $this->input->post('email_address'),
+                    'phone_number' => $this->input->post('phone_number'),
+
+);
+                    $this->Clientreg_model->form_insert($data);
+                    $data['message'] = 'Account Inserted Successfully';
+                    $this->load->view('header'); 
+                    $this->load->view('clients/clientlogin_view',$data);
+                    $this->load->view('footer'); 
+}
+}
