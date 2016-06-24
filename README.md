@@ -1,0 +1,2 @@
+# bidding
+bidding model codeigniter
